@@ -5,12 +5,9 @@
 class Plateau;
 
 class Joueur{
-private:
-
+public:
     int pion;
     Plateau* grille;
-public:
-
     std::string pseudo;
     Joueur(int p, Plateau* g)  : pion(p), grille(g) {};
 
@@ -28,6 +25,14 @@ public:
     int choisirCoup();
 
     void setPseudo();
+};
+
+class Ia_niv0 : public Joueur{
+public:
+    Ia_niv0(int p,Plateau*g);
+    void setPseudo();
+
+    int choisirCoup();
 
 
 };

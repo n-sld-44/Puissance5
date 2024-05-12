@@ -22,5 +22,6 @@ int main()
     if (state == 0 ){
         cout<<"Au revoir!";
     }
+
     return 0;
 }

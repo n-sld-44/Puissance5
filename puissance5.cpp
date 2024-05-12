@@ -26,11 +26,15 @@ Puissance5::~Puissance5(){
 void Puissance5::menuSelection1(){
     int player;
     // ajouter les differents joueurs ici
-    std::cout<<"Selectionner le joueur 1 !"<<std::endl<<" 1 : Joueur humain"<<std::endl;
+    std::cout<<"Selectionnez le joueur 1 !"<<std::endl<<" 1 : Joueur humain"<<std::endl<<" 2 : Ia niveau 0"<<std::endl;
     std::cin>>player;
     switch (player){
         case 1:
             this->joueur1 = new JoueurHumain(1, plateau);
+            std::cout<<"Bienvenue, "<<joueur1->pseudo<<std::endl;
+            break;
+        case 2:
+            this->joueur2 = new Ia_niv0(1, plateau);
             std::cout<<"Bienvenue, "<<joueur1->pseudo<<std::endl;
             break;
 
@@ -41,11 +45,15 @@ void Puissance5::menuSelection1(){
 void Puissance5::menuSelection2(){
     int player;
     // ajouter les differents joueurs ici
-    std::cout<<"Selectionner le joueur 2 !"<<std::endl<<" 1 : Joueur humain"<<std::endl;
+    std::cout<<"Selectionnez le joueur 2 !"<<std::endl<<" 1 : Joueur humain"<<std::endl<<" 2 : Ia niveau 0"<<std::endl;
     std::cin>>player;
     switch (player){
     case 1:
-        this->joueur2 = new JoueurHumain(1, plateau);
+        this->joueur2 = new JoueurHumain(-1, plateau);
+        std::cout<<"Bienvenue, "<<joueur2->pseudo<<std::endl;
+        break;
+    case 2:
+        this->joueur2 = new Ia_niv0(-1, plateau);
         std::cout<<"Bienvenue, "<<joueur2->pseudo<<std::endl;
         break;
 
@@ -63,19 +71,19 @@ int Puissance5::jouer(){
         do{
             coup = joueur1->choisirCoup();
         } while (coup<0||coup>plateau->col-1);
-        plateau->placerPion(coup,1);
+        plateau->placerPion(coup,joueur1->pion);
         plateau->afficher();
 
-        if (plateau->verifierVictoire(1)){
+        if (plateau->verifierVictoire(joueur1->pion)){
             std::cout<<"Victoire de "<<joueur1->pseudo<<std::endl;
             break;
             }
         do{
             coup = joueur2->choisirCoup();
         } while (coup<0||coup>plateau->col-1);
-        plateau->placerPion(coup,-1);
+        plateau->placerPion(coup,joueur2->pion);
         plateau->afficher();
-        if (plateau->verifierVictoire(-1)){
+        if (plateau->verifierVictoire(joueur2->pion)){
             std::cout<<"Victoire de "<<joueur2->pseudo<<std::endl;
             break;
         }

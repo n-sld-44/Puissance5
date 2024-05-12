@@ -1,6 +1,6 @@
 #ifndef PLATEAU_H_INCLUDED
 #define PLATEAU_H_INCLUDED
-
+#include <vector>
 
 class Plateau{
 
@@ -9,7 +9,7 @@ private:
     int** grille;
 
 public:
-        int col;
+    int col;
 
 
     Plateau();
