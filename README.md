@@ -6,4 +6,6 @@ Enfin une dernière méthode qui est utilise lorsqu'un joueur essaie de placer u
 Par la suite nous avons crée une classe Joueur à laquelle nous avons intégré la classe Plateau dont nous avions besoin, cette classe a deux attributs qui sont pion et pseudo. Dans cette classe il y a une méthode virtuelle pure qui permet au joueur de choisir son pseudo pour jouer au puissance5 et une autre méthode virtuelle pure qui permet au joueur de choisir la colonne où il souhaite placer son pion.
 Il y a deux classes qui héritent de la classe Joueur, à savoir les classes JoueurHumain et Ia_niv0.
 
-Dans la classe JoueurHumain il y a une méthode qui permet au joueur humain de placer son pion dans la colonne de son choix
+Dans la classe JoueurHumain il y a une méthode qui permet au joueur humain de placer son pion dans la colonne de son choix et de rentrer son pseudo.
+Dans la classe Ia_niv0 c'est la même chose il y a les deux mêmes méthodes car en réalité l'humain et l'IA vont s'affronter en ayant un pseudo et en choississant une colonne où placer un pion afin de remporter la partie.
+Pour la conception de l'IA nous avons utilisé un algorithme nommé "min max" qui permet d'avoir une IA qui joue de manière aléatoire mais 
