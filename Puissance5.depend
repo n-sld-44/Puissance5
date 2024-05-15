@@ -1,23 +1,26 @@
 # depslib dependency file v1.0
-1715531433 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.cpp
+1715806898 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.cpp
 	"joueur.h"
 	<iostream>
 	<cstdlib>
+	<conio.h>
 	"plateau.h"
 	<ctime>
 
-1715530823 c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.h
+1715798018 c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.h
 	<string>
 
-1715531331 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\main.cpp
+1715801519 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\main.cpp
 	<iostream>
+	<conio.h>
 	"puissance5.h"
 	"plateau.h"
 	"joueur.h"
 
-1715522465 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.cpp
+1715806673 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.cpp
 	"plateau.h"
 	<iostream>
+	<windows.h>
 
 1715529796 c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.h
 	<vector>

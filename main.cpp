@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include "puissance5.h"
 #include "plateau.h"
 #include "joueur.h"
@@ -25,3 +26,6 @@ int main()
 
     return 0;
 }
+
+
+

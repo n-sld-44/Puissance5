@@ -1,5 +1,6 @@
 #include "plateau.h"
 #include <iostream>
+#include <windows.h>
 
 Plateau::Plateau(){
     std::cout<<"Nombre de lignes"<<std::endl;
@@ -31,14 +32,73 @@ Plateau::~Plateau(){
     }
 
 void Plateau::afficher() {
+    HANDLE hConsole;
+    hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
     const char* caracter;
     for (int i =line-1;i>=0;i--){
         for (int j = 0; j<col;j++){
-            caracter = (grille[j][i]==1) ? "X" : ((grille[j][i]==-1) ? "O" : "_");
-            std::cout<<"|"<<caracter;
+            SetConsoleTextAttribute(hConsole, 17);
+            std::cout<<" ";
+            if (grille[j][i]==1){
+                SetConsoleTextAttribute(hConsole, 240);
+                std::cout<<"     ";
+            }
+            else if (grille[j][i]==-1){
+                SetConsoleTextAttribute(hConsole, 204);
+                std::cout<<"     ";
+            }
+            else{
+                SetConsoleTextAttribute(hConsole, 7);
+                std::cout<<"     ";
+            }
         }
-        std::cout<<"|"<<std::endl<<std::string(col*2+1,'-')<<std::endl;
+        SetConsoleTextAttribute(hConsole, 17);
+        std::cout<<" ";
+        SetConsoleTextAttribute(hConsole, 7);
+        std::cout<<std::endl;
+        for (int j = 0; j<col;j++){
+            SetConsoleTextAttribute(hConsole, 17);
+            std::cout<<" ";
+            if (grille[j][i]==1){
+                SetConsoleTextAttribute(hConsole, 240);
+                std::cout<<"     ";
+            }
+            else if (grille[j][i]==-1){
+                SetConsoleTextAttribute(hConsole, 204);
+                std::cout<<"     ";
+            }
+            else{
+                SetConsoleTextAttribute(hConsole, 7);
+                std::cout<<"     ";
+            }
+        }
+        SetConsoleTextAttribute(hConsole, 17);
+        std::cout<<" ";
+        SetConsoleTextAttribute(hConsole, 7);
+        std::cout<<std::endl;
+        for (int j = 0; j<col;j++){
+            SetConsoleTextAttribute(hConsole, 17);
+            std::cout<<" ";
+            if (grille[j][i]==1){
+                SetConsoleTextAttribute(hConsole, 240);
+                std::cout<<"     ";
+            }
+            else if (grille[j][i]==-1){
+                SetConsoleTextAttribute(hConsole, 204);
+                std::cout<<"     ";
+            }
+            else{
+                SetConsoleTextAttribute(hConsole, 7);
+                std::cout<<"     ";
+            }
+        }
+        SetConsoleTextAttribute(hConsole, 17);
+        std::cout<<" "<<std::endl<<std::string(col*6+1,' ');
+        SetConsoleTextAttribute(hConsole, 7);
+        std::cout<<std::endl;
     }
+    SetConsoleTextAttribute(hConsole, 7);
 
 }
 

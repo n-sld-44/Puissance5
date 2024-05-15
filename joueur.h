@@ -2,6 +2,7 @@
 #define JOUEUR_H_INCLUDED
 #include <string>
 
+
 class Plateau;
 
 class Joueur{
@@ -38,7 +39,7 @@ public:
 };
 
 
-
+void afficherCurseur(int cursor);
 
 
 #endif // JOUEUR_H_INCLUDED
