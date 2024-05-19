@@ -38,6 +38,19 @@ public:
 
 };
 
+class Ia : public Joueur{
+private:
+    int difficulte;
+public:
+
+    Ia(int p,Plateau*g);
+    ~Ia();
+
+    void selectDiff();
+    void setPseudo();
+
+    int choisirCoup();
+};
 
 void afficherCurseur(int cursor);
 

@@ -3,6 +3,7 @@
 #include "puissance5.h"
 #include "plateau.h"
 #include "joueur.h"
+#include "minimax.h"
 
 
 using namespace std;

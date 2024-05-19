@@ -1,36 +1,47 @@
 # depslib dependency file v1.0
-1715806898 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.cpp
+1716132729 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.cpp
 	"joueur.h"
 	<iostream>
 	<cstdlib>
 	<conio.h>
 	"plateau.h"
+	<limits.h>
 	<ctime>
 
-1715798018 c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.h
+1716132423 c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.h
 	<string>
 
-1715801519 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\main.cpp
+1716132828 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\main.cpp
 	<iostream>
 	<conio.h>
 	"puissance5.h"
 	"plateau.h"
 	"joueur.h"
+	"minimax.h"
 
-1715806673 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.cpp
+1716133177 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.cpp
 	"plateau.h"
 	<iostream>
 	<windows.h>
+	<limits.h>
 
-1715529796 c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.h
+1716132608 c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.h
 	<vector>
 
 1715519653 c:\users\natha\desktop\esilv\s6\c++\puissance5\puissance5.h
 
-1715530792 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\puissance5.cpp
+1716133467 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\puissance5.cpp
 	"puissance5.h"
 	<iostream>
 	<conio.h>
 	"joueur.h"
 	"plateau.h"
+
+1716069703 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\minimax.cpp
+	"minimax.h"
+	"plateau.h"
+	<climits>
+	<iostream>
+
+1715943433 c:\users\natha\desktop\esilv\s6\c++\puissance5\minimax.h
 

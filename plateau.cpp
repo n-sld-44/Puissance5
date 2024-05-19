@@ -1,6 +1,8 @@
 #include "plateau.h"
 #include <iostream>
 #include <windows.h>
+#include <limits.h>
+
 
 Plateau::Plateau(){
     std::cout<<"Nombre de lignes"<<std::endl;
@@ -22,8 +24,19 @@ Plateau::Plateau(){
             grille[i][j]= 0;
         }
     }
+    nbMaxPions = line*col;
+    nbPions = 0;
 }
+Plateau::Plateau(int l, int c): line(l), col(c) , nbMaxPions(l*c),nbPions(0) {
+            grille = new int*[col];
+            for (int i=0;i<col;i++){
+                grille[i] = new int[line];
+                for (int j =0; j<line;j++){
+                    grille[i][j]= 0;
+                }
+            }
 
+    }
 Plateau::~Plateau(){
     for (int i = 0;i< col;++i) {
             delete[] grille[i];
@@ -94,7 +107,11 @@ void Plateau::afficher() {
             }
         }
         SetConsoleTextAttribute(hConsole, 17);
-        std::cout<<" "<<std::endl<<std::string(col*6+1,' ');
+        std::cout<<" ";
+        SetConsoleTextAttribute(hConsole, 7);
+        std::cout<<std::endl;
+        SetConsoleTextAttribute(hConsole, 17);
+        std::cout<<std::string(col*6+1,' ');
         SetConsoleTextAttribute(hConsole, 7);
         std::cout<<std::endl;
     }
@@ -106,10 +123,12 @@ bool Plateau::placerPion(int c, int pion){
     for (int i = 0;i<line;i++){
         if (grille[c][i]==0){
             grille[c][i] = pion;
+            this->nbPions++;
             return true;
         }
 
     }
+
     return false;
 }
 
@@ -117,9 +136,11 @@ bool Plateau::retirerPion(int c){
     for (int i = line-1; i>=0; i--){
         if (grille[c][i] != 0){
             grille[c][i] = 0;
+            this->nbPions--;
             return true;
         }
     }
+
     return false;
 }
 
@@ -163,3 +184,44 @@ bool Plateau::verifierVictoire(int pion) const {
 }
 
 
+int Plateau::evaluer() const {
+    if (verifierVictoire(1)) return 100;
+    if (verifierVictoire(-1)) return -100;
+    return 0;
+}
+
+int Plateau::minimax(int profondeur, int alpha, int beta, bool maxJoueur) {
+    int score = evaluer();
+
+
+    if (score == 100) return score-profondeur;
+    if (score == -100) return score+profondeur;
+    if (nbPions == nbMaxPions || profondeur == 0) return score;
+
+    if (maxJoueur) {
+        int maxEval = INT_MIN;
+        for (int c = 0; c < col; c++) {
+            if (placerPion(c, 1)) {
+                int eval = minimax(profondeur - 1, alpha, beta, false);
+                retirerPion(c);
+                maxEval = std::max(maxEval, eval);
+                alpha = std::max(alpha, eval);
+                if (beta <= alpha) break;
+            }
+        }
+        return maxEval;
+    }
+     else {
+        int minEval = INT_MAX;
+        for (int c = 0; c < col; c++) {
+            if (placerPion(c, -1)) {
+                int eval = minimax(profondeur - 1, alpha, beta, true);
+                retirerPion(c);
+                minEval = std::min(minEval, eval);
+                beta = std::min(beta, eval);
+                if (beta >= alpha) break;
+            }
+        }
+        return minEval;
+    }
+}

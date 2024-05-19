@@ -3,16 +3,16 @@
 #include <vector>
 
 class Plateau{
-
 private:
     int line;
-    int** grille;
 
+    int** grille;
+    int nbPions;
+    int nbMaxPions;
 public:
     int col;
-
-
     Plateau();
+    Plateau(int l, int c) ;
 
     ~Plateau();
 
@@ -23,6 +23,11 @@ public:
     bool retirerPion(int colonne);
 
     bool verifierVictoire(int pion) const;
+
+    int evaluer() const;
+
+    int minimax(int profondeur, int alpha, int beta, bool maximizingPlayer);
+
 
 };
 
