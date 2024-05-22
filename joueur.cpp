@@ -67,13 +67,13 @@ void Ia::selectDiff(){
     int keyPressed;
     do{
         std::system("cls");
-        std::cout<<"Modifiez le niveau de difficulté de l'Ia avec les fleches Up and Down du clavier"<<std::endl<<std::endl;
+        std::cout<<"Modifiez le niveau de difficulté de l'Ia avec les fleches Up and Down du clavier et space pour valider"<<std::endl<<std::endl;
         std:: cout<<dif;
         keyPressed = _getch();
-        if (keyPressed ==72 && dif>1){
+        if (keyPressed ==80 && dif>1){
             dif--;
         }
-        else if (keyPressed == 80 && dif<10){
+        else if (keyPressed == 72 && dif<10){
             dif++;
         }
 
@@ -84,20 +84,21 @@ this->difficulte = dif;
 }
 
 void Ia::setPseudo(){
-    this->pseudo = "Robot avec "+std::to_string(this->difficulte*20)+ " de QI";;
+    this->pseudo = "Robot avec "+std::to_string(this->difficulte*20)+ " de QI";
 }
 
 
 /////////////
 
 int Ia::choisirCoup(){
+    int meilleurCoup = -1;
+
     if (this->pion==1){
         int meilleurScore = INT_MIN;
-        int meilleurCoup = -1;
 
         for (int c = 0; c < this->grille->col; c++) {
             if (this->grille->placerPion(c, 1)) {
-                int score = this->grille->minimax(this->difficulte, INT_MIN, INT_MAX, false);
+                int score = this->grille->minimax(this->difficulte, INT_MIN, INT_MAX, -1);
                 this->grille->retirerPion(c);
 
                 if (score > meilleurScore) {
@@ -106,15 +107,15 @@ int Ia::choisirCoup(){
                 }
             }
         }
-        return meilleurCoup;
+
     }
     else{
         int meilleurScore = INT_MAX;
-        int meilleurCoup = -1;
+
 
         for (int c = 0; c < this->grille->col; c++) {
-            if (this->grille->placerPion(c, 1)) {
-                int score = this->grille->minimax(this->difficulte, INT_MIN, INT_MAX, true);
+            if (this->grille->placerPion(c, -1)) {
+                int score = this->grille->minimax(this->difficulte, INT_MIN, INT_MAX, 1);
                 this->grille->retirerPion(c);
 
                 if (score < meilleurScore) {
@@ -123,9 +124,9 @@ int Ia::choisirCoup(){
                 }
             }
         }
-        return meilleurCoup;
-    }
 
+    }
+    return meilleurCoup;
 
 }
 

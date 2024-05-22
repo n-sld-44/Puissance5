@@ -35,8 +35,6 @@
 		<Unit filename="joueur.cpp" />
 		<Unit filename="joueur.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="minimax.cpp" />
-		<Unit filename="minimax.h" />
 		<Unit filename="plateau.cpp" />
 		<Unit filename="plateau.h" />
 		<Unit filename="puissance5.cpp" />

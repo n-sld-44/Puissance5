@@ -4,6 +4,7 @@
 #include <limits.h>
 
 
+
 Plateau::Plateau(){
     std::cout<<"Nombre de lignes"<<std::endl;
     std::cin>>line;
@@ -184,29 +185,32 @@ bool Plateau::verifierVictoire(int pion) const {
 }
 
 
-int Plateau::evaluer() const {
-    if (verifierVictoire(1)) return 100;
-    if (verifierVictoire(-1)) return -100;
-    return 0;
-}
 
-int Plateau::minimax(int profondeur, int alpha, int beta, bool maxJoueur) {
-    int score = evaluer();
+int Plateau::minimax(int profondeur, int alpha, int beta, int  maxJoueur) {
+    if(nbPions==nbMaxPions||verifierVictoire(maxJoueur)){
+        if (verifierVictoire(maxJoueur)){
+            return 99999*maxJoueur;
+        }
+        else if (verifierVictoire(maxJoueur*-1)){
+            return 99999*maxJoueur*-1;
+        }
+        else{
+            return 0;
+        }
+    }
+    if (profondeur==0){
+        return evaluer(maxJoueur);
+    }
 
-
-    if (score == 100) return score-profondeur;
-    if (score == -100) return score+profondeur;
-    if (nbPions == nbMaxPions || profondeur == 0) return score;
-
-    if (maxJoueur) {
+    if (maxJoueur==1) {
         int maxEval = INT_MIN;
         for (int c = 0; c < col; c++) {
             if (placerPion(c, 1)) {
-                int eval = minimax(profondeur - 1, alpha, beta, false);
+                int eval = minimax(profondeur - 1, alpha, beta, -1);
                 retirerPion(c);
                 maxEval = std::max(maxEval, eval);
                 alpha = std::max(alpha, eval);
-                if (beta <= alpha) break;
+                if (alpha >= beta) break;
             }
         }
         return maxEval;
@@ -215,13 +219,99 @@ int Plateau::minimax(int profondeur, int alpha, int beta, bool maxJoueur) {
         int minEval = INT_MAX;
         for (int c = 0; c < col; c++) {
             if (placerPion(c, -1)) {
-                int eval = minimax(profondeur - 1, alpha, beta, true);
+                int eval = minimax(profondeur - 1, alpha, beta, 1);
                 retirerPion(c);
                 minEval = std::min(minEval, eval);
                 beta = std::min(beta, eval);
-                if (beta >= alpha) break;
+                if (alpha >= beta) break;
             }
         }
         return minEval;
     }
 }
+
+
+int Plateau::evaluer(int piece) const {
+
+    int score =0;
+    //Score colonne centrale
+    //int arr1[this->line];
+    //for (int i=0;i<line;i++){
+     //   arr1[i]= this->grille[this->col/2][i];
+    //}
+
+    //score += evaluerFenetre(arr1,piece);
+    //delete arr1;
+
+    //Horizontal
+    for (int c=0;c<this->col-4;c++){
+        for (int r=0;r<this->line;r++){
+            int arr[5] = {this->grille[c][r],this->grille[c+1][r],this->grille[c+2][r],this->grille[c+3][r],this->grille[c+4][r]};
+           score += evaluerFenetre(arr,piece);
+        }
+    }
+
+    //vertical
+    for (int c=0;c<this->col;c++){
+        for (int r=0;r<this->line-4;r++){
+            int arr[5] = {this->grille[c][r],this->grille[c][r+1],this->grille[c][r+2],this->grille[c][r+3],this->grille[c][r+4]};
+           score += evaluerFenetre(arr,piece);
+        }
+    }
+
+    //Diago montante
+    for (int r=0;r<this->line-4;r++){
+        for (int c=0;c<this->col-4;c++){
+            int arr[5] = {this->grille[c][r],this->grille[c+1][r+1],this->grille[c+2][r+2],this->grille[c+3][r+3],this->grille[c+4][r+4]};
+           score += evaluerFenetre(arr,piece);
+        }
+    }
+    //Diago montante
+    for (int r = line-1;r>4;r-- ){
+        for (int c=0;c<this->col-4;c++){
+            int arr[5] = {this->grille[c][r],this->grille[c+1][r-1],this->grille[c+2][r-2],this->grille[c+3][r-3],this->grille[c+4][r-4]};
+           score += evaluerFenetre(arr,piece);
+        }
+    }
+return score;
+
+
+}
+
+
+int evaluerFenetre(int* arr,int piece){
+    int score =0;
+    int opp = -1*piece;
+    if (countArray(arr,piece) ==5){
+        score+=200;
+    }
+    else if (countArray(arr,piece) ==4&&countArray(arr,0)==1){
+        score+=piece*10;
+    }
+    else if (countArray(arr,piece) ==3&&countArray(arr,0)==2){
+        score+=piece*5;
+    }
+    else if (countArray(arr,piece) ==2&&countArray(arr,0)==3){
+        score+=piece*2;
+    }
+    if (countArray(arr,opp) ==4&&countArray(arr,0)==1){
+        score-=piece*9;
+    }
+    if (countArray(arr,opp) ==3&&countArray(arr,0)==2){
+        score-=piece*4;
+    }
+    return score;
+}
+
+
+int countArray(int *arr,int piece){
+    int compteur =0;
+    int n = sizeof(arr) / sizeof(arr[0]);
+    for (int i=0;i<n;i++){
+        if (arr[i]==piece){
+            compteur++;
+        }
+    }
+    return compteur;
+}
+

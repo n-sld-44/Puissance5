@@ -7,9 +7,10 @@ private:
     int line;
 
     int** grille;
+
+public:
     int nbPions;
     int nbMaxPions;
-public:
     int col;
     Plateau();
     Plateau(int l, int c) ;
@@ -24,12 +25,13 @@ public:
 
     bool verifierVictoire(int pion) const;
 
-    int evaluer() const;
+    int evaluer(int piece) const;
 
-    int minimax(int profondeur, int alpha, int beta, bool maximizingPlayer);
+    int minimax(int profondeur, int alpha, int beta, int maxJoueur);
 
 
 };
 
-
+int evaluerFenetre(int arr[5],int piece);
+int countArray(int arr[],int piece);
 #endif // PLATEAU_H_INCLUDED

@@ -88,6 +88,12 @@ int Puissance5::jouer(){
             std::cout<<"Victoire de "<<joueur1->pseudo<<std::endl;
             break;
             }
+        else if (plateau->nbMaxPions==plateau->nbPions){
+            std::system("cls");
+            std::cout<<"Match Nul"<<std::endl;
+            plateau->afficher();
+            break;
+        }
         do{
             coup = joueur2->choisirCoup();
         } while (coup<0||coup>plateau->col-1);
@@ -97,6 +103,12 @@ int Puissance5::jouer(){
         if (plateau->verifierVictoire(joueur2->pion)){
             std::system("cls");
             std::cout<<"Victoire de "<<joueur2->pseudo<<std::endl;
+            plateau->afficher();
+            break;
+        }
+        else if (plateau->nbMaxPions==plateau->nbPions){
+            std::system("cls");
+            std::cout<<"Match Nul"<<std::endl;
             plateau->afficher();
             break;
         }
