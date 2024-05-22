@@ -235,13 +235,13 @@ int Plateau::evaluer(int piece) const {
 
     int score =0;
     //Score colonne centrale
-    //int arr1[this->line];
-    //for (int i=0;i<line;i++){
-     //   arr1[i]= this->grille[this->col/2][i];
-    //}
+    int arr1[this->line];
+    for (int i=0;i<line;i++){
+    arr1[i]= this->grille[this->col/2][i];
+    }
 
-    //score += evaluerFenetre(arr1,piece);
-    //delete arr1;
+    score += evaluerFenetre(arr1,piece);
+    delete arr1;
 
     //Horizontal
     for (int c=0;c<this->col-4;c++){

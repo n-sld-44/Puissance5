@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1716368936 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.cpp
+1716369177 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.cpp
 	"joueur.h"
 	<iostream>
 	<cstdlib>
@@ -11,15 +11,14 @@
 1716132423 c:\users\natha\desktop\esilv\s6\c++\puissance5\joueur.h
 	<string>
 
-1716132828 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\main.cpp
+1716390385 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\main.cpp
 	<iostream>
 	<conio.h>
 	"puissance5.h"
 	"plateau.h"
 	"joueur.h"
-	"minimax.h"
 
-1716331495 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.cpp
+1716390355 source:c:\users\natha\desktop\esilv\s6\c++\puissance5\plateau.cpp
 	"plateau.h"
 	<iostream>
 	<windows.h>
