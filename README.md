@@ -11,4 +11,4 @@ Dans la classe JoueurHumain il y a une méthode qui permet au joueur humain de p
 Dans la classe Ia_niv0 c'est la même chose il y a les deux mêmes méthodes car en réalité l'humain et l'IA vont s'affronter en ayant un pseudo et en choississant une colonne où placer un pion afin de remporter la partie.
 Pour la conception de l'IA nous avons utilisé un algorithme nommé "min max" qui permet d'avoir une IA qui joue de manière aléatoire mais 
 
-Dans ce projet nous avons utilisé des pointeurs ce qui nous a permit d'économiser des cases mémoires et de ne pas recréer des copies de variables.
+Dans ce projet nous avons utilisé des pointeurs ce qui nous a permis d'économiser des cases mémoires et de ne pas recréer des copies de variables.
